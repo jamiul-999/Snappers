@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login
-from djanog.http import HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render
 from .forms import LoginForm
 
@@ -7,7 +7,7 @@ def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            cd = form.cleaned_data
+            cd = form.cleaned_data  # Convert to dictionary like object
             user = authenticate(
                 request,
                 username=cd['username'],
